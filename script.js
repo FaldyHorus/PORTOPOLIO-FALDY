@@ -214,7 +214,7 @@ const initTruePhysics = () => {
 };
 
 // ==========================================================
-// 9. FORCE DOWNLOAD PDF (BYPASS BROWSER PREVIEW)
+// 9. FORCE DOWNLOAD PDF (BYPASS BROWSER PREVIEW & ACROBAT)
 // ==========================================================
 const forceDownloadCV = (e) => {
     e.preventDefault(); 
@@ -233,14 +233,16 @@ const forceDownloadCV = (e) => {
             return response.blob();
         })
         .then(blob => {
-            // Buat URL sementara di memori browser
-            const blobUrl = window.URL.createObjectURL(blob);
+            // JURUS PAMUNGKAS: Ubah tipe blob jadi "application/octet-stream" (Data Mentah)
+            // Ini bikin Acrobat/Chrome buta dan GAK BISA ngebuka filenya otomatis
+            const rawBlob = new Blob([blob], { type: 'application/octet-stream' });
+            const blobUrl = window.URL.createObjectURL(rawBlob);
             
             // Buat elemen link rahasia buat nge-trigger download
             const hiddenLink = document.createElement('a');
             hiddenLink.style.display = 'none';
             hiddenLink.href = blobUrl;
-            hiddenLink.download = 'cv-faldy.pdf'; // Nama file pas didownload
+            hiddenLink.download = 'cv-faldy.pdf'; // Nama pas di-save
             
             document.body.appendChild(hiddenLink);
             hiddenLink.click(); 
