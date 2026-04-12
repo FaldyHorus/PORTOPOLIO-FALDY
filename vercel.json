@@ -3,19 +3,19 @@
   "rewrites": [
     {
       "source": "/",
-      "destination": "/html/index.html"
+      "destination": "/PORTOPOLIO/html/index.html"
     },
     {
       "source": "/about",
-      "destination": "/html/about.html"
+      "destination": "/PORTOPOLIO/html/about.html"
     },
     {
       "source": "/projects",
-      "destination": "/html/projects.html"
+      "destination": "/PORTOPOLIO/html/projects.html"
     },
     {
       "source": "/contact",
-      "destination": "/html/contact.html"
+      "destination": "/PORTOPOLIO/html/contact.html"
     }
   ]
 }
