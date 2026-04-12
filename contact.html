@@ -8,7 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../css/style.css">
+    
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="dark-mode">
 
@@ -38,7 +39,7 @@
                                     </div>
                                     <div class="id-yellow-badge">FULL-STACK DEVELOPER</div>
                                     <div class="id-photo-area">
-                                        <img src="../assets/img/fullface.jpeg" alt="Faldy" class="id-photo-img">
+                                        <img src="fullface.jpeg" alt="Faldy" class="id-photo-img">
                                     </div>
                                     <div class="id-name-ribbon">I WAYAN FALDY PRAYUDI</div>
                                     <div class="id-footer">
@@ -121,7 +122,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
-    <script src="../js/script.js"></script>
+    
+    <script src="script.js"></script>
 
     <script>
         const contactForm = document.getElementById("my-contact-form");
@@ -129,9 +131,8 @@
         const submitBtn = document.getElementById("submit-btn");
 
         contactForm.addEventListener("submit", async function(event) {
-            event.preventDefault(); // Mencegah form pindah halaman
+            event.preventDefault(); 
             
-            // Ubah tombol jadi mode loading
             const originalBtnText = submitBtn.innerHTML;
             submitBtn.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin ms-2"></i>';
             submitBtn.disabled = true;
@@ -148,26 +149,21 @@
                 });
 
                 if (response.ok) {
-                    // Kalau Sukses: Tampilkan pesan sukses & Kosongkan Form
                     statusMessage.className = "alert alert-success d-block";
                     statusMessage.innerHTML = "Pesan berhasil terkirim! Saya akan segera membalasnya.";
-                    contactForm.reset(); // Ini yang bikin datanya kosong lagi
+                    contactForm.reset(); 
                 } else {
-                    // Kalau Gagal dari server
                     statusMessage.className = "alert alert-danger d-block";
                     statusMessage.innerHTML = "Oops! Ada masalah saat mengirim pesan.";
                 }
             } catch (error) {
-                // Kalau Gagal koneksi (misal internet mati)
                 statusMessage.className = "alert alert-danger d-block";
                 statusMessage.innerHTML = "Gagal terhubung. Pastikan internet Anda aktif.";
             }
 
-            // Kembalikan tombol seperti semula setelah 3 detik
             submitBtn.innerHTML = originalBtnText;
             submitBtn.disabled = false;
             
-            // Hilangkan pesan notif setelah 5 detik
             setTimeout(() => {
                 statusMessage.classList.remove("d-block");
                 statusMessage.classList.add("d-none");

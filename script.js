@@ -18,9 +18,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     };
 
+    // LINK HEADER & FOOTER SUDAH DIRATAKAN
     await Promise.all([
-        loadComponent('header-placeholder', '../view/header.html'),
-        loadComponent('footer-placeholder', '../view/footer.html')
+        loadComponent('header-placeholder', 'header.html'),
+        loadComponent('footer-placeholder', 'footer.html')
     ]);
 
     setTimeout(() => {
@@ -210,4 +211,52 @@ const initTruePhysics = () => {
     wrapper.addEventListener('touchstart', startDrag, {passive: true});
     window.addEventListener('touchmove', moveDrag, {passive: true});
     window.addEventListener('touchend', endDrag);
+};
+
+// ==========================================================
+// 9. FORCE DOWNLOAD PDF (BYPASS BROWSER PREVIEW)
+// ==========================================================
+const forceDownloadCV = (e) => {
+    e.preventDefault(); 
+    
+    const btn = e.currentTarget;
+    const originalText = btn.innerHTML;
+    
+    // Ubah tombol jadi loading pas diklik
+    btn.innerHTML = 'Downloading... <i class="fas fa-spinner fa-spin ms-2"></i>';
+    btn.style.pointerEvents = 'none'; 
+    
+    // Tarik file PDF-nya secara paksa lewat background
+    fetch('cv-faldy.pdf')
+        .then(response => {
+            if (!response.ok) throw new Error("File tidak ditemukan!");
+            return response.blob();
+        })
+        .then(blob => {
+            // Buat URL sementara di memori browser
+            const blobUrl = window.URL.createObjectURL(blob);
+            
+            // Buat elemen link rahasia buat nge-trigger download
+            const hiddenLink = document.createElement('a');
+            hiddenLink.style.display = 'none';
+            hiddenLink.href = blobUrl;
+            hiddenLink.download = 'CV_I_Wayan_Faldy_Prayudi.pdf'; // Nama file pas didownload
+            
+            document.body.appendChild(hiddenLink);
+            hiddenLink.click(); 
+            
+            // Bersih-bersih memori
+            window.URL.revokeObjectURL(blobUrl);
+            hiddenLink.remove();
+            
+            // Balikin tombol kayak semula
+            btn.innerHTML = originalText;
+            btn.style.pointerEvents = 'auto';
+        })
+        .catch(err => {
+            console.error(err);
+            alert('Gagal mendownload CV. Pastikan nama file cv-faldy.pdf sudah ada di folder!');
+            btn.innerHTML = originalText;
+            btn.style.pointerEvents = 'auto';
+        });
 };

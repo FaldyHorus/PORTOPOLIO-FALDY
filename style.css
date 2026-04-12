@@ -1,6 +1,6 @@
 /* ============================================================
-    MASTER ENGINE CSS - I WAYAN FALDY PRAYUDI
-    FINAL VERSION: PRO TYPOGRAPHY, ICONIC TRANSITIONS & ANIMATED GRID
+   MASTER ENGINE CSS - I WAYAN FALDY PRAYUDI
+   FINAL VERSION: PRO TYPOGRAPHY, ICONIC TRANSITIONS & ANIMATED GRID
    ============================================================ */
 
 :root {
@@ -49,7 +49,7 @@ main { flex: 1 0 auto; }
 ::-webkit-scrollbar-thumb:hover { background: var(--cyan); }
 
 /* ============================================================
-    ANIMATED CYBER GRID BACKGROUND (Warna Bergerak)
+   ANIMATED CYBER GRID BACKGROUND (Warna Bergerak)
    ============================================================ */
 .glow-bg {
     position: fixed; 
