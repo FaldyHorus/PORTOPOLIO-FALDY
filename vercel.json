@@ -1,9 +1,21 @@
 {
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/", "destination": "/PORTOPOLIO/html/index.html" },
-    { "source": "/about", "destination": "/PORTOPOLIO/html/about.html" },
-    { "source": "/projects", "destination": "/PORTOPOLIO/html/projects.html" },
-    { "source": "/contact", "destination": "/PORTOPOLIO/html/contact.html" }
+    {
+      "source": "/",
+      "destination": "/PORTOPOLIO/html/index.html"
+    },
+    {
+      "source": "/about",
+      "destination": "/PORTOPOLIO/html/about.html"
+    },
+    {
+      "source": "/projects",
+      "destination": "/PORTOPOLIO/html/projects.html"
+    },
+    {
+      "source": "/contact",
+      "destination": "/PORTOPOLIO/html/contact.html"
+    }
   ]
 }
