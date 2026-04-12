@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | PORTOPOLIO I Wayan Faldy Prayudi</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+
+    <style>
+        /* --- AMBIENT ORBS ANIMATION --- */
+        .ambient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.15;
+            z-index: -1;
+            animation: floatOrb 10s infinite alternate ease-in-out;
+            pointer-events: none;
+        }
+        .orb-1 { width: 300px; height: 300px; background: var(--cyan); top: -10%; left: -5%; }
+        .orb-2 { width: 400px; height: 400px; background: #9d00ff; bottom: 10%; right: -10%; animation-delay: -5s; }
+        
+        @keyframes floatOrb {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(30px, 50px) scale(1.1); }
+        }
+
+        /* --- HOLOGRAPHIC PROFILE RINGS --- */
+        .hologram-wrapper {
+            position: relative;
+            z-index: 5;
+        }
+        .holo-ring {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            border: 1px dashed rgba(0, 210, 255, 0.4);
+            pointer-events: none;
+            z-index: -1;
+        }
+        .ring-1 { width: 105%; height: 105%; animation: spinRight 20s linear infinite; }
+        .ring-2 { width: 112%; height: 112%; border: 1px solid rgba(157, 0, 255, 0.2); animation: spinLeft 25s linear infinite; }
+        
+        @keyframes spinRight { 100% { transform: translate(-50%, -50%) rotate(360deg); } }
+        @keyframes spinLeft { 100% { transform: translate(-50%, -50%) rotate(-360deg); } }
+
+        /* --- ADVANCED GLASS PANELS --- */
+        .premium-glass-panel {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .premium-glass-panel::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.02), transparent);
+            transform: skewX(-20deg); transition: 0.7s; pointer-events: none;
+        }
+        .premium-glass-panel:hover::before { left: 150%; }
+
+        /* --- DETAILED TIMELINE CARDS --- */
+        .timeline-advanced {
+            position: relative;
+            padding-left: 35px;
+            margin-left: 15px;
+        }
+        .timeline-advanced::before {
+            content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
+            background: linear-gradient(to bottom, var(--cyan), rgba(0, 210, 255, 0.1), transparent);
+        }
+        .timeline-item-adv {
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+        .timeline-node {
+            position: absolute;
+            left: -40px;
+            top: 5px;
+            width: 12px; height: 12px;
+            border-radius: 50%;
+            background: var(--bg);
+            border: 2px solid var(--cyan);
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.6);
+            z-index: 2;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .timeline-item-adv:hover .timeline-node {
+            background: var(--cyan);
+            transform: scale(1.3);
+            box-shadow: 0 0 25px rgba(0, 210, 255, 1);
+        }
+
+        .timeline-content-box {
+            background: rgba(10, 15, 25, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 16px;
+            padding: 25px;
+            transition: all 0.4s ease;
+            position: relative;
+            z-index: 1;
+        }
+        .timeline-content-box:hover {
+            border-color: rgba(0, 210, 255, 0.3);
+            background: rgba(0, 210, 255, 0.02);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        /* --- TECH PILLS (SKILL TAGS) --- */
+        .tech-pill-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+        .tech-pill {
+            font-size: 0.7rem;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 5px 12px;
+            border-radius: 50px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+        .timeline-content-box:hover .tech-pill {
+            color: var(--cyan);
+            border-color: rgba(0, 210, 255, 0.3);
+            background: rgba(0, 210, 255, 0.05);
+        }
+
+       /* --- TEXT GRADIENTS & UTILS --- */
+        .text-gradient-primary {
+            background: linear-gradient(90deg, #ffffff, var(--cyan));
+            -webkit-background-clip: text;
+            background-clip: text; /* Versi standar biar editor nggak bawel */
+            -webkit-text-fill-color: transparent;
+            color: transparent; /* Fallback wajib */
+        }
+        
+        .stat-divider {
+            width: 1px;
+            height: 50px;
+            background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.2), transparent);
+        
+        }
+        .stat-divider {
+            width: 1px;
+            height: 50px;
+            background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.2), transparent);
+        }
+    </style>
+</head>
+<body class="dark-mode">
+
+    <div id="page-loader" class="page-transition-overlay">
+        <i class="fa-solid fa-yin-yang yin-yang-loader"></i>
+    </div>
+
+    <div class="glow-bg"></div>
+    <div class="ambient-orb orb-1"></div>
+    <div class="ambient-orb orb-2"></div>
+    
+    <div id="header-placeholder"></div>
+
+    <main class="container" style="padding-top: 160px; padding-bottom: 120px; position: relative; z-index: 10;">
+        
+        <div class="text-center mb-5 reveal">
+            <span class="badge-status text-uppercase mb-3" style="letter-spacing: 2px;">Behind the Code</span>
+            <h1 class="main-title" style="font-size: clamp(2.5rem, 5vw, 4rem);">About <span class="text-neon">Me</span></h1>
+        </div>
+
+        <section class="master-contact-bingkai reveal mb-5 p-4 p-md-5" style="border-radius: 40px; border-color: rgba(0, 210, 255, 0.15) !important;">
+            <div class="row g-5 align-items-center">
+                
+                <div class="col-lg-4 position-relative">
+                    <div class="hologram-wrapper mx-auto" style="max-width: 380px;">
+                        <div class="holo-ring ring-1"></div>
+                        <div class="holo-ring ring-2"></div>
+                        
+                        <div class="profile-frame" data-tilt data-tilt-max="12" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.2">
+                            <img src="../assets/img/fullface.jpeg" class="img-main" alt="I Wayan Faldy Prayudi" style="border-radius: 40px;">
+                            
+                            <div class="glass-tag shadow-lg" style="bottom: 20px; left: 15px; right: 15px; border-radius: 16px;">
+                                <div class="d-flex align-items-center gap-3 w-100">
+                                    <div class="icon-box" style="width: 45px; height: 45px; border-radius: 50%; background: rgba(0, 210, 255, 0.1);">
+                                        <i class="fa-solid fa-location-crosshairs text-cyan" style="font-size: 1.1rem;"></i>
+                                    </div>
+                                    <div class="mini-info">
+                                        <h6 class="fw-bold mb-0" style="font-size: 0.95rem; letter-spacing: 0.5px;">Bali, Indonesia</h6>
+                                        <p class="mb-0 text-cyan" style="font-size: 0.75rem; font-weight: 800; letter-spacing: 1px;">SYSTEM ONLINE</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-8 ps-lg-5">
+                    <div class="premium-glass-panel p-4 p-md-5">
+                        <h2 class="fw-bold mb-1 text-gradient-primary" style="font-size: 2.2rem;">I Wayan Faldy Prayudi</h2>
+                        <h5 class="text-neon mb-4" style="letter-spacing: 3px; font-weight: 800; font-size: 0.9rem;">ARCHITECTING DIGITAL REALITIES</h5>
+                        
+                        <div class="bio-content">
+                            <p class="desc-text mt-0 w-100" style="max-width: 100%; font-size: 1.05rem; text-align: justify; line-height: 1.9;">
+                                I am a Full-Stack Web Developer with a strong foundation in database architecture, responsive design, and robust backend logic. My technical journey ranges from developing and optimizing internal web systems at <span class="text-cyan fw-bold">PT. Angkasa Pura Indonesia</span> to building complex custom automation scripts and Discord bots using <span class="text-cyan fw-bold">Python</span>.
+                            </p>
+                            <p class="desc-text mt-3 w-100 opacity-75" style="max-width: 100%; font-size: 1rem; text-align: justify; line-height: 1.9;">
+                                I thrive on turning intricate technical concepts into seamless, high-performance digital solutions. Currently, my focus is directed toward mastering enterprise systems and financial technology structures, ensuring every line of code is optimized for scalability and security.
+                            </p>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between align-items-center mt-5 pt-4 border-top border-secondary border-opacity-25">
+                            <div class="text-center w-100">
+                                <h3 class="fw-bold text-cyan mb-1" style="font-size: 1.5rem;">PNB</h3>
+                                <p class="small opacity-50 text-uppercase letter-spacing-1 mb-0" style="font-weight: 700;">Alumni</p>
+                            </div>
+                            <div class="stat-divider"></div>
+                            <div class="text-center w-100">
+                                <h3 class="fw-bold text-cyan mb-1" style="font-size: 1.5rem;">Web & Bot</h3>
+                                <p class="small opacity-50 text-uppercase letter-spacing-1 mb-0" style="font-weight: 700;">Specialty</p>
+                            </div>
+                            <div class="stat-divider d-none d-sm-block"></div>
+                            <div class="text-center w-100 d-none d-sm-block">
+                                <h3 class="fw-bold text-cyan mb-1" style="font-size: 1.5rem;">Bali</h3>
+                                <p class="small opacity-50 text-uppercase letter-spacing-1 mb-0" style="font-weight: 700;">Base</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="row g-5 mt-3 reveal">
+            
+            <div class="col-lg-6">
+                <div class="premium-glass-panel h-100 p-4 p-md-5 d-flex flex-column">
+                    
+                    <div class="d-flex align-items-center gap-4 mb-5">
+                        <div class="icon-box" style="width: 50px; height: 50px; background: rgba(0, 210, 255, 0.1); border: 1px solid rgba(0, 210, 255, 0.3);">
+                            <i class="fa-solid fa-briefcase text-cyan fs-5"></i>
+                        </div>
+                        <h3 class="fw-bold mb-0">Experience</h3>
+                    </div>
+                    
+                    <div class="timeline-advanced" style="flex-grow: 1;">
+                        
+                        <div class="timeline-item-adv">
+                            <div class="timeline-node"></div>
+                            <div class="timeline-content-box">
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <h4 class="fw-bold mb-0 text-white" style="font-size: 1.25rem;">Web Developer Intern</h4>
+                                    <span class="badge" style="background: rgba(0, 210, 255, 0.1); color: var(--cyan); border: 1px solid rgba(0, 210, 255, 0.2); font-size: 0.7rem; letter-spacing: 1px;">2026 - PRESENT</span>
+                                </div>
+                                <p class="text-cyan fw-bold mb-3" style="font-size: 0.95rem; letter-spacing: 0.5px;">PT. Angkasa Pura Indonesia</p>
+                                
+                                <p class="desc-text mb-0 opacity-75" style="font-size: 0.9rem; text-align: justify; line-height: 1.7;">
+                                    Focused on developing web-based solutions, optimizing internal systems, and enhancing UI/UX functionalities for operational efficiency.
+                                </p>
+                                
+                                <div class="tech-pill-container">
+                                    <span class="tech-pill">Frontend</span>
+                                    <span class="tech-pill">Internal Tools</span>
+                                    <span class="tech-pill">Optimization</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item-adv">
+                            <div class="timeline-node"></div>
+                            <div class="timeline-content-box">
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <h4 class="fw-bold mb-0 text-white" style="font-size: 1.25rem;">Full-Stack Developer</h4>
+                                    <span class="badge" style="background: rgba(255, 255, 255, 0.05); color: #ccc; border: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.7rem; letter-spacing: 1px;">FREELANCE</span>
+                                </div>
+                                <p class="text-cyan fw-bold mb-3" style="font-size: 0.95rem; letter-spacing: 0.5px;">PHIRS.TECH</p>
+                                
+                                <p class="desc-text mb-0 opacity-75" style="font-size: 0.9rem; text-align: justify; line-height: 1.7;">
+                                    Designing scalable database architectures, building automation bots, and developing interactive web portfolios for diverse clients.
+                                </p>
+                                
+                                <div class="tech-pill-container">
+                                    <span class="tech-pill">Python</span>
+                                    <span class="tech-pill">Discord API</span>
+                                    <span class="tech-pill">Web Arch</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="premium-glass-panel h-100 p-4 p-md-5 d-flex flex-column">
+                    
+                    <div class="d-flex align-items-center gap-4 mb-5">
+                        <div class="icon-box" style="width: 50px; height: 50px; background: rgba(0, 210, 255, 0.1); border: 1px solid rgba(0, 210, 255, 0.3);">
+                            <i class="fa-solid fa-graduation-cap text-cyan fs-5"></i>
+                        </div>
+                        <h3 class="fw-bold mb-0">Education</h3>
+                    </div>
+                    
+                    <div class="timeline-advanced" style="flex-grow: 1;">
+                        
+                        <div class="timeline-item-adv">
+                            <div class="timeline-node"></div>
+                            <div class="timeline-content-box">
+                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                    <h4 class="fw-bold mb-0 text-white" style="font-size: 1.25rem;">Information Technology</h4>
+                                    <span class="badge" style="background: rgba(0, 255, 157, 0.1); color: #00ff9d; border: 1px solid rgba(0, 255, 157, 0.2); font-size: 0.7rem; letter-spacing: 1px;">GRADUATED 2026</span>
+                                </div>
+                                <p class="text-cyan fw-bold mb-3" style="font-size: 0.95rem; letter-spacing: 0.5px;">Bali State Polytechnic (PNB)</p>
+                                
+                                <p class="desc-text mb-0 opacity-75" style="font-size: 0.9rem; text-align: justify; line-height: 1.7;">
+                                    Completed the Management Informatics Study Program. Specialized in software engineering, complex database management, and structured programming.
+                                </p>
+                                
+                                <div class="tech-pill-container">
+                                    <span class="tech-pill">Databases</span>
+                                    <span class="tech-pill">Software Eng</span>
+                                    <span class="tech-pill">Algorithms</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item-adv opacity-0" style="pointer-events: none; margin-bottom: 0;">
+                            <div class="timeline-node"></div>
+                            <div class="timeline-content-box py-3">
+                                <h4 class="mb-0">-</h4>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row mt-5 pt-5 reveal">
+            <div class="col-12 text-center">
+                <h2 class="fw-bold mb-3 text-white">Want to see the full details?</h2>
+                <p class="desc-text mx-auto mb-5" style="max-width: 600px; color: var(--text); opacity: 0.8;">
+                    Download my comprehensive Curriculum Vitae for a complete breakdown of my technical skills, projects, and academic history.
+                </p>
+                <div class="d-flex justify-content-center gap-3 flex-wrap">
+                    <a href="../assets/cv-faldy.pdf" download="CV_I_Wayan_Faldy_Prayudi.pdf" class="btn-pill btn-outline">
+                        Download Full CV <i class="fa-solid fa-download ms-2"></i>
+                    </a>
+                    
+                    <a href="contact.html" class="btn-pill btn-outline">
+                        Let's Talk <i class="fa-solid fa-comments ms-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+    <script src="../js/script.js"></script>
+</body>
+</html>
