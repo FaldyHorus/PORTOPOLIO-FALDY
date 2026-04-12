@@ -240,7 +240,7 @@ const forceDownloadCV = (e) => {
             const hiddenLink = document.createElement('a');
             hiddenLink.style.display = 'none';
             hiddenLink.href = blobUrl;
-            hiddenLink.download = 'CV_I_Wayan_Faldy_Prayudi.pdf'; // Nama file pas didownload
+            hiddenLink.download = 'cv-faldy.pdf'; // Nama file pas didownload
             
             document.body.appendChild(hiddenLink);
             hiddenLink.click(); 
@@ -255,7 +255,7 @@ const forceDownloadCV = (e) => {
         })
         .catch(err => {
             console.error(err);
-            alert('Gagal mendownload CV. Pastikan nama file cv-faldy.pdf sudah ada di folder!');
+            alert('Gagal mendownload CV. Pastikan nama file cv-faldy.pdf sudah ada di folder utama (sejajar index.html)!');
             btn.innerHTML = originalText;
             btn.style.pointerEvents = 'auto';
         });
