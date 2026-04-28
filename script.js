@@ -102,26 +102,39 @@ const initTheme = () => {
 };
 
 // ==========================================================
-// PERBAIKAN: HIGHLIGHT MENU AKTIF (SUPPORT HOSTING/VERCEL)
+// PERBAIKAN FINAL: HIGHLIGHT MENU AKTIF 100% TEMBUS VERCEL
 // ==========================================================
 const highlightActiveMenu = () => {
-    let path = window.location.pathname.split("/").pop();
+    let path = window.location.pathname;
+    let page = path.split("/").pop().split('?')[0].split('#')[0];
     
-    // Kalau di halaman utama (kosong), anggap aja index
-    if (path === "" || path === "/") path = "index";
-    
-    // Bersihin akhiran .html biar cocok di Vercel/Hosting
-    let cleanPath = path.replace('.html', '');
+    // Kalau link kosong atau cuma "/", artinya lagi di Home
+    if (page === "" || page === "/") page = "index";
+    let cleanPage = page.replace('.html', '');
 
+    let menuFound = false;
+
+    // Loop semua menu nav-link
     document.querySelectorAll('.nav-link').forEach(link => {
         let linkHref = link.getAttribute('href');
         if (linkHref) {
-            let cleanHref = linkHref.replace('.html', '');
-            if (cleanHref === cleanPath) {
-                link.classList.add('active'); // Nambahin efek terang
+            let cleanHref = linkHref.replace('.html', '').split('?')[0].split('#')[0];
+            
+            // Cocokin halaman sama menu
+            if (cleanHref === cleanPage) {
+                link.classList.add('active'); // Kasih class active
+                menuFound = true;
+            } else {
+                link.classList.remove('active'); // Matiin yang lain
             }
         }
     });
+
+    // Fallback: Kalau gagal nemu karena di domain utama (faldy.dev doang)
+    if (!menuFound && (cleanPage === 'index' || cleanPage === '')) {
+        let homeLink = document.querySelector('.nav-link[href="index.html"]');
+        if(homeLink) homeLink.classList.add('active');
+    }
 };
 
 const initReveal = () => {
