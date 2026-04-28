@@ -38,8 +38,24 @@ document.addEventListener('DOMContentLoaded', async () => {
         setTimeout(() => { loader.classList.add('fade-out'); }, 400); 
     }
 
+    // ==========================================================
+    // PERBAIKAN: EVENT LISTENER BIAR DOWNLOAD GAK STUCK LOADING
+    // ==========================================================
     document.body.addEventListener('click', (e) => {
         const link = e.target.closest('a');
+        
+        if (link) {
+            // DETEKSI OTOMATIS: Kalau ini tombol download, zip, pdf, atau ada JS onclick nya, abaikan transisi loading!
+            const isDownloadBtn = link.hasAttribute('download') || 
+                                  link.href.match(/\.(pdf|zip|rar)$/i) || 
+                                  link.getAttribute('onclick');
+            
+            if (isDownloadBtn) {
+                return; // Stop di sini, biarin file-nya didownload normal
+            }
+        }
+
+        // Kalau link biasa (pindah halaman HTML), baru jalanin animasi Yin-Yang
         if (link && link.href && !link.href.includes('#') && link.target !== '_blank') {
             const currentDomain = window.location.hostname;
             const linkDomain = new URL(link.href).hostname;
@@ -155,8 +171,6 @@ const initTruePhysics = () => {
         // Render Transformasi 3D HANYA ke ID Card
         wrapper.style.transform = `translate3d(${cardX}px, ${cardY}px, 0) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
 
-        // BAGIAN KODE TALI (STRING) SUDAH DIHAPUS
-
         requestAnimationFrame(updatePhysics);
     };
     updatePhysics();
@@ -234,7 +248,6 @@ const forceDownloadCV = (e) => {
         })
         .then(blob => {
             // JURUS PAMUNGKAS: Ubah tipe blob jadi "application/octet-stream" (Data Mentah)
-            // Ini bikin Acrobat/Chrome buta dan GAK BISA ngebuka filenya otomatis
             const rawBlob = new Blob([blob], { type: 'application/octet-stream' });
             const blobUrl = window.URL.createObjectURL(rawBlob);
             
