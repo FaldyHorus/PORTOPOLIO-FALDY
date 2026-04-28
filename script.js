@@ -101,10 +101,26 @@ const initTheme = () => {
     };
 };
 
+// ==========================================================
+// PERBAIKAN: HIGHLIGHT MENU AKTIF (SUPPORT HOSTING/VERCEL)
+// ==========================================================
 const highlightActiveMenu = () => {
-    const path = window.location.pathname.split("/").pop() || "index.html";
+    let path = window.location.pathname.split("/").pop();
+    
+    // Kalau di halaman utama (kosong), anggap aja index
+    if (path === "" || path === "/") path = "index";
+    
+    // Bersihin akhiran .html biar cocok di Vercel/Hosting
+    let cleanPath = path.replace('.html', '');
+
     document.querySelectorAll('.nav-link').forEach(link => {
-        if (link.getAttribute('href') === path) link.classList.add('active');
+        let linkHref = link.getAttribute('href');
+        if (linkHref) {
+            let cleanHref = linkHref.replace('.html', '');
+            if (cleanHref === cleanPath) {
+                link.classList.add('active'); // Nambahin efek terang
+            }
+        }
     });
 };
 
